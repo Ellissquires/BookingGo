@@ -20,11 +20,10 @@ pip install -r requirements.txt
 
 Note: this requires python version >= 3.6
 
-## Getting started
-In order to search the BookingGo API the TaxiSearch CLI exposes a search command which takes 5 parameters, the parameters are *pickup_lat* *pickup_lng* *dropoff_lat* *dropoff_lng* *max_passengers*. In addition to this the empty flag (--) must be passed as an additional parameter to tell typer that arguments in the form `-x` should be treated as negative numbers and not flags. An example search command along with the output produced can be seen below. In addition to the base 5 paramaters the `--json` flag can be passed which converts the output into a json format, this will be interfaced with the REST API in part 2.
+## Running the script
+In order to search the BookingGo API the TaxiSearch CLI exposes a search command which takes 5 parameters, the parameters are *pickup_lat*, *pickup_lng*, *dropoff_lat*, *dropoff_lng* and *max_passengers*. In addition to this the empty flag (--) must be passed as an additional parameter to tell typer that arguments in the form `-x` should be treated as negative numbers and not flags. An example search command along with the output produced can be seen below. In addition to the base 5 paramaters the `--json` flag can be passed which converts the output into a json format, this will be interfaced with the REST API in part 2.
 
 ```
-cd TaxiSearch
 python TaxiSearch.py search -- 51.470020 -0.454295 51.507351 -0.127758 5
 ```
 
@@ -34,9 +33,31 @@ python TaxiSearch.py search -- 51.470020 -0.454295 51.507351 -0.127758 5
 The tests can be ran using the following command:
 
 ```
-cd TaxiSearch
 python TaxiSearchTest.py
 ```
 
-
 # Part 2
+
+## Introduction
+
+The REST API for part 2 is built using [Express](https://expressjs.com/) the [Node.js](https://nodejs.org/en/) web framework. The request params are parsed and passed to the `TaxiSearch.py` script with the `--json` flag enabled. The output of the script is then returned as the result. The `child_process` module allows direct execution of shell commands, this is potentially vulnerable to code injection attacks. In order to prevent such attacks all paramaters are parsed into floats using `parseFloat` which returns `NaN` for none float values. So for any potentially dangerous parameters an error is returned and no shell execution is performed.
+
+## Requirements
+
+- [Node.js](https://nodejs.org/en/)
+
+## Installation
+
+```
+npm install
+```
+
+## Accessing the API
+
+```
+node index.js
+```
+
+### Example call
+
+http://localhost:3000/api/search/?pickup=45.5,46.8&dropoff=-45.3,45.2&n_passengers=4 
