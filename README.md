@@ -30,7 +30,7 @@ python TaxiSearch.py search -- 51.470020 -0.454295 51.507351 -0.127758 5
 ![Example output](res/p1-output.gif)
 
 ## Testing
-The tests can be ran using the following command:
+The tests can be run using the following command:
 
 ```
 python TaxiSearchTest.py
@@ -52,8 +52,7 @@ The REST API for part 2 is built using [Express](https://expressjs.com/) the [No
 npm install
 ```
 
-## Accessing the API
-
+## Starting the server
 ```
 node index.js
 ```
@@ -61,3 +60,14 @@ node index.js
 ### Example call
 
 http://localhost:3000/api/search/?pickup=45.5,46.8&dropoff=-45.3,45.2&n_passengers=4 
+
+
+## Testing
+
+In order to test the API I used the [jest](https://jestjs.io/) and [supertest](https://github.com/visionmedia/supertest) libraries
+
+The tests can be run with the following command:
+
+```
+npm test
+```
