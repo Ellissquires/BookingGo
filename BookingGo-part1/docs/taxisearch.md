@@ -1,5 +1,3 @@
-# Part 1
-
 ## Introduction
 The console application for part one is developed using the Python CLI framework [Typer](https://typer.tiangolo.com/). Typer provides a quick way of building console applications with Python, eliminating alot of the boilerplate code needed to handle command line arguments. Following on from this if incorrect arguments are passed to the program suitable error messages are provided by default.
 
@@ -34,41 +32,4 @@ The tests can be run using the following command:
 
 ```
 python TaxiSearchTest.py
-```
-
-# Part 2
-
-## Introduction
-
-The REST API for part 2 is built using [Express](https://expressjs.com/) the [Node.js](https://nodejs.org/en/) web framework. The request params are parsed and passed to the `TaxiSearch.py` script with the `--json` flag enabled. The output of the script is then returned as the result. The `child_process` module allows direct execution of shell commands, this is potentially vulnerable to code injection attacks. In order to prevent such attacks all paramaters are parsed into floats using `parseFloat` which returns `NaN` for none float values. So for any potentially dangerous parameters an error is returned and no shell execution is performed.
-
-## Requirements
-
-- [Node.js](https://nodejs.org/en/)
-- All dependencies from part 1
-
-## Installation
-
-```
-npm install
-```
-
-## Starting the server
-```
-node index.js
-```
-
-### Example call
-
-http://localhost:3000/api/search/?pickup=45.5,46.8&dropoff=-45.3,45.2&n_passengers=4 
-
-
-## Testing
-
-In order to test the API I used the [jest](https://jestjs.io/) and [supertest](https://github.com/visionmedia/supertest) libraries
-
-The tests can be run with the following command:
-
-```
-npm test
 ```

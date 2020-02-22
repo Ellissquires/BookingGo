@@ -35,17 +35,13 @@ app.get('/api/search', (req, res) => {
     const TaxiSearch = exec(script_call, function (error, stdout, stderr) {
         if (error) {
             console.log(error)
-            return res.status(400)
+            return res.status(500).send({"error": "Something went wrong"})
         } else {
             // Clean stdout by removing all the new lines
             results = JSON.parse(stdout.replace(/\r?\n|\r/g, "").replace(/'/g, '"'))
             return res.status(200).json(results)
         }
     })
-
-    // TaxiSearch.on('exit', function (code) {
-    //     console.log('Child process exited with exit code '+code);
-    // })
 })
 app.listen(port, () => console.log(`TaxiSearch API listening on port ${port}`))
 

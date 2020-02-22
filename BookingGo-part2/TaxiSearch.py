@@ -3,12 +3,18 @@ from typing import Tuple
 import requests
 from requests.exceptions import Timeout, HTTPError
 import click_spinner
-from tabulate import tabulate
 import sys
 
 app = typer.Typer()
 
-class TaxiSearch:
+class TaxiSearch:    
+    """A simple wrapper for querying the BookingGo Taxi API
+    
+    TaxiSearch exposes methods which enable querying the BookingGo
+    Taxi API, results can either be returned by stdout reporting
+    or as JSON for use in conjunction with an API
+    """
+    
     def __init__(self, n_passengers):
         self.base_url = "https://techtest.rideways.com/"
         self.suppliers = ["dave", "eric", "jeff"]
