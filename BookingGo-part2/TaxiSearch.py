@@ -14,7 +14,7 @@ class TaxiSearch:
     Taxi API, results can either be returned by stdout reporting
     or as JSON for use in conjunction with an API
     """
-    
+
     def __init__(self, n_passengers):
         self.base_url = "https://techtest.rideways.com/"
         self.suppliers = ["dave", "eric", "jeff"]
@@ -88,7 +88,8 @@ def display_search_values(pickup, dropoff, n):
     typer.secho("---------------------------------", fg=typer.colors.GREEN)
 
 @app.command()
-def search(pickup: Tuple[float, float], dropoff: Tuple[float, float], n_passengers: int, json: bool = False):
+def search(pickup: Tuple[float, float], dropoff: Tuple[float, float], 
+           n_passengers: int = typer.Argument(0), json: bool = False):
     # Build the request params from the pickup and dropoff locations
     request_params = {
         "pickup": pickup,

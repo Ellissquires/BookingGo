@@ -9,10 +9,13 @@ app.get('/api/search', (req, res) => {
     let dropoff = req.query.dropoff
     let n_passengers = parseInt(req.query.n_passengers)
 
-    // Check if any off the parameters are missing
-    if (!pickup || !dropoff || !n_passengers){
+    // Check if any of the parameters are missing
+    if (!pickup || !dropoff){
         return res.status(400).send({error: "Something is missing from the input"})
-    } 
+    }
+
+    // If number of passengers isnt provided default to 0
+    n_passengers = n_passengers || 0
 
     // Parse inputs into floats
     pickup = pickup.split(',').map(parseFloat)

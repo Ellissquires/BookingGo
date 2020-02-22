@@ -1,5 +1,5 @@
 import typer
-from typing import Tuple
+from typing import Tuple, Optional
 import requests
 from requests.exceptions import Timeout, HTTPError
 import click_spinner
@@ -87,11 +87,12 @@ def display_search_values(pickup, dropoff, n):
     typer.secho("----------- Searching -----------", fg=typer.colors.GREEN)
     typer.secho(f"Pickup: {pickup}", fg=typer.colors.BRIGHT_BLUE)
     typer.secho(f"Dropoff: {dropoff}", fg=typer.colors.BRIGHT_BLUE)
-    typer.secho(f"Number of passengers: {n}", fg=typer.colors.BRIGHT_BLUE)
+    if (n != 0): typer.secho(f"Number of passengers: {n}", fg=typer.colors.BRIGHT_BLUE)
     typer.secho("---------------------------------", fg=typer.colors.GREEN)
 
 @app.command()
-def search(pickup: Tuple[float, float], dropoff: Tuple[float, float], n_passengers: int, json: bool = False):
+def search(pickup: Tuple[float, float], dropoff: Tuple[float, float], 
+           n_passengers: int = typer.Argument(0), json: bool = False):
     # Build the request params from the pickup and dropoff locations
     request_params = {
         "pickup": pickup,
