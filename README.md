@@ -23,8 +23,12 @@ Note: this requires python version >= 3.6
 ## Running the script
 In order to search the BookingGo API the TaxiSearch CLI exposes a search command which takes 5 parameters, the parameters are *pickup_lat*, *pickup_lng*, *dropoff_lat*, *dropoff_lng* and *max_passengers*. In addition to this the empty flag (--) must be passed as an additional parameter to tell typer that arguments in the form `-x` should be treated as negative numbers and not flags. An example search command along with the output produced can be seen below. In addition to the base 5 paramaters the `--json` flag can be passed which converts the output into a json format, this will be interfaced with the REST API in part 2.
 
+### Example commands
 ```
 python TaxiSearch.py search -- 51.470020 -0.454295 51.507351 -0.127758 5
+```
+```
+python TaxiSearch.py search -- 51.470020 -0.454295 51.507351 -0.127758
 ```
 
 ![Example output](res/p1-output.gif)
@@ -60,7 +64,38 @@ node index.js
 
 ### Example call
 
-http://localhost:3000/api/search/?pickup=45.5,46.8&dropoff=-45.3,45.2&n_passengers=4 
+http://localhost:3000/api/search/?pickup=45.5,46.8&dropoff=-45.3,45.2&n_passengers=4
+
+### Sample output
+
+```
+{
+   "STANDARD":{
+      "supplier":"Eric",
+      "price":62412
+   },
+   "EXECUTIVE":{
+      "supplier":"Dave",
+      "price":406034
+   },
+   "LUXURY":{
+      "supplier":"Dave",
+      "price":696654
+   },
+   "LUXURY_PEOPLE_CARRIER":{
+      "supplier":"Dave",
+      "price":325535
+   },
+   "PEOPLE_CARRIER":{
+      "supplier":"Jeff",
+      "price":540239
+   },
+   "MINIBUS":{
+      "supplier":"Jeff",
+      "price":909484
+   }
+}
+```
 
 
 ## Testing
